@@ -21,7 +21,7 @@ int main()
     {
         temp=(rand()%q);
         temp=temp+p;
-        //printf("%d\n",temp);
+        printf("%d\n",temp);
         fprintf(fptr,"%d ",temp);
         a[i]=temp;
     }
@@ -30,40 +30,30 @@ int main()
     fptr = fopen("D:\\dsa_files\\file_random.txt","r");
     fstack=fopen("D:\\dsa_files\\stack.txt","w");
 
-    int number;
     for(int i=0; i<n; i++)
     {
-        fscanf(fptr,"%d",&number);
-        push(number);
+        fscanf(fptr,"%d",&a[i]);
     }
     for(int i=0; i<n; i++)
         fprintf(fstack,"%d ",a[i]);
     fclose(fstack);
     fclose(fptr);
 
-
-
-
     FILE *fpush,*fpop;
-    int choice,num;
-    for(;;)
-    {
-       scanf("%d",&choice);
-       switch(choice)
-       {
-           case 1:num=pop();
-               fpush=fopen("D:\\dsa_files\\push.txt","a");
-               fprintf(fpush,"%d\n",num);
-               fclose(fpush);
-               break;
-            case 2:num=pop();
-               fpop=fopen("D:\\dsa_files\\pop.txt","a");
-               fprintf(fpop,"%d\n",num);
-               fclose(fpop);
-               break;
+    int s;
+    printf("Enter the number of data to be popped out from stack?");
+    scanf("%d",&s);
+    fstack=fopen("D:\\dsa_files\\stack.txt","a");
+    fpop=fopen("D:\\dsa_files\\pop.txt","a");
 
-       }
+    for(int i=0; i<s; i++)
+    {
+        fscanf(fstack,"%d",&a[i]);
+        data=pop();
+        printf("%d",data);
     }
+  fclose(fpop);
+  fclose(fstack);
 
 }
 void push(int value)
@@ -90,12 +80,7 @@ int pop()
         return 0;
     }
     else
-    {
-        int data;
-        data=stack[top];
-        top--;
-        return data;
-    }
+        return top--;
 
 }
 int peak()
